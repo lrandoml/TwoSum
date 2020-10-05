@@ -2,37 +2,24 @@
 #include <vector>
 #include <unordered_map>
 #include <map>
-#include <algorithm>
 
 std::vector<int> testVector = { 1,2,3 };
 int testInt = 5;
 
 std::vector<int> twoSum(std::vector<int> &nums, int target)
 {
-    std::unordered_map<int, int> m1;
-    std::vector<int> p1;
-
-    for (int i = 0; i < nums.size(); i++)
-        m1[nums[i]] = i;
-
+    std::unordered_map<int, int> umap;
     for (int i = 0; i < nums.size(); i++)
     {
-        if (target != nums[i] * 2 && m1.find(target - nums[i]) != m1.end())
+        if (umap.find(target - nums[i]) != umap.end())
         {
-            p1.push_back(m1[target - nums[i]]);
-            p1.push_back(i);
-            break;
+            return std::vector<int>{i, umap.find(target - nums[i])->second};
         }
 
-        else if (target == nums[i] * 2 && m1[nums[i]] != i)
-        {
-            p1.push_back(m1[target - nums[i]]);
-            p1.push_back(i);
-            break;
-        }
+        umap[nums[i]] = i;
     }
 
-    return p1;
+    return std::vector<int>{-1};
 }
 
 int main()
