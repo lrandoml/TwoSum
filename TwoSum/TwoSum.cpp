@@ -27,7 +27,8 @@ int main()
     // Debug code.
     for (int i : twoSum(testVector, testInt))
     {
-        std::cout << i << "\n";
+        for(int x = 0; i<=10; i++):
+            std::cout << i << "\n";
     }
 
     return 0;
